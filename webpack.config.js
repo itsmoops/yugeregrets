@@ -26,7 +26,7 @@ module.exports = {
             jQuery: "jquery",
             "window.jQuery": "jquery"
         }),
-        new webpack.optimize.DedupePlugin(https://yugeregrets.herokuapp.com/
+        new webpack.optimize.DedupePlugin()
         // new webpack.optimize.UglifyJsPlugin({
         //      minimize: true,
         //      compress: {
