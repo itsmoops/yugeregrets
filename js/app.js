@@ -36,7 +36,7 @@ $(window).load(function(){
     voicelist.forEach(function(voice){
       console.log(voice.name)
     })
-    responsiveVoice.speak("And now, huge regrets. By remorseful Trump voters.", "US English Male", { rate: .75, pitch: .75})
+    responsiveVoice.speak("And now, 'yuuj' regrets. By remorseful Trump voters.", "US English Male", { rate: .75, pitch: .8})
 
     setTimeout(function(){
       // responsiveVoice.speak(msg, "US English Male", { rate: .75 })
