@@ -16,7 +16,7 @@ if (typeof document !== "undefined") {
           type: 'GET',
           dataType: 'jsonp',
           data: {},
-          url: "https://api.twitter.com/1.1/search/tweets.json?q=I%20voted%20for%20you&count=20",
+          url: "http://api.twitter.com/1.1/search/tweets.json?q=I%20voted%20for%20you&count=20",
           error: function (jqXHR, textStatus, errorThrown) {
               console.log(jqXHR)
           },
