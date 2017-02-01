@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "npm run build && node server.js",
     "build": "webpack --config webpack.config.js -p",
     "dev": "webpack-dev-server --config webpack.config.js --inline",
     "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"

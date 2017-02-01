@@ -4,7 +4,7 @@ module.exports = {
     target: 'web',
     output: {
         path: __dirname,
-        filename: "bundle.js"
+        filename: "./src/bundle.js"
     },
     devServer: {
       historyApiFallback: true,

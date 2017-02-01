@@ -1,4 +1,4 @@
-var config = require('../data/twitter_config')
+var config = require('./data/twitter_config')
 var Twitter = require('twitter-node-client').Twitter;
 var twitter = new Twitter(config);
 
