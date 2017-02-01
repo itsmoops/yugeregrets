@@ -31,7 +31,6 @@ html, body {
 .title-container {
     background: url(../img/title.jpg) rgb(117, 176, 186);
     background-size: cover;
-    background-position-y: -80px;
 
     -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 3s; /* Firefox < 16 */
