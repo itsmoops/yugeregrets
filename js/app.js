@@ -11,5 +11,16 @@ var success = function (data) {
 
 $(document).ready(function(){
   var tweets = twitter.getSearch({'q':'I voted for you','count': 10}, error, success);
-  // $('.title-container').fadeIn("slow")
+  // $.ajax({
+  //       type: 'GET',
+  //       dataType: 'jsonp',
+  //       data: {},
+  //       url: "https://api.twitter.com/1.1/search/tweets.json?q=I%20voted%20for%20you&count=20",
+  //       error: function (jqXHR, textStatus, errorThrown) {
+  //           console.log(jqXHR)
+  //       },
+  //       success: function (msg) {
+  //           console.log(msg);
+  //       }
+  //   });
 })
