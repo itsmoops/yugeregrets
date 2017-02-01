@@ -10,7 +10,7 @@ var success = function (data) {
 };
 
 $(document).ready(function(){
-  // var tweets = twitter.getSearch({'q':'I voted for you','count': 10}, error, success);
+  // var tweets = twitter.getSearch({'q':'voted for you','count': 10}, error, success);
   // $.ajax({
   //       type: 'GET',
   //       dataType: 'jsonp',
