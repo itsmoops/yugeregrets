@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "webpack bundle.js",
     "build": "webpack --config webpack.config.js -p",
     "dev": "webpack-dev-server --config webpack.config.js --inline"
   },
