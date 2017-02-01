@@ -32,10 +32,10 @@ $(document).ready(function(){
 
 $(window).load(function(){
   setTimeout(function(){
-    var voicelist = responsiveVoice.getVoices();
-    voicelist.forEach(function(voice){
-      console.log(voice.name)
-    })
+    // var voicelist = responsiveVoice.getVoices();
+    // voicelist.forEach(function(voice){
+    //   console.log(voice.name)
+    // })
     responsiveVoice.speak("And now, 'yuuj' regrets. By remorseful Trump voters.", "US English Male", { rate: .75, pitch: .8})
 
     setTimeout(function(){
