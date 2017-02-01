@@ -25,6 +25,7 @@ $(document).ready(function(){
   //   });
   //
   // TODO: make blacklist of words we dont want in tweets - proud, honored, happy
+  // blacklist if tweet has a photo
   // make whitelist of words that make sure its related to trump - trump @realDonaldTrump
   // convert @realDonaldTrump to "At real donald trump"
 })
