@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "build": "webpack --config webpack.config.js -p",
-    "dev": "webpack-dev-server --config webpack.config.js --inline"
+    "start": "webpack-dev-server --config webpack.config.js --inline",
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
   },
   "author": "Eric Moore",
   "license": "ISC",
