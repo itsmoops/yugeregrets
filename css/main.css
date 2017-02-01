@@ -1,0 +1,129 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Alice', serif;
+    font-size: 50px;
+    color: white;
+    text-shadow: 2px 2px black;
+    background-color: black;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    top: 0px;
+    bottom: 0px;
+}
+
+.content {
+    display: block;
+    text-align: center;
+}
+
+.title-container {
+    background: url(../img/title.jpg) rgb(117, 176, 186);
+    background-size: cover;
+    background-position-y: -80px;
+
+    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 3s; /* Firefox < 16 */
+        -ms-animation: fadein 3s; /* Internet Explorer */
+         -o-animation: fadein 3s; /* Opera < 12.1 */
+            animation: fadein 3s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.title {
+    font-family: 'Allura', cursive;
+    font-size: 220px;
+    text-shadow: 3px 3px black;
+    -ms-transform: rotate(-30deg); /* IE 9 */
+    -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */
+    transform: rotate(-25deg);
+    position: fixed;
+    top: 2%;
+    left: 10%;
+}
+
+.title-author {
+    position: fixed;
+    bottom: 2%;
+}
+
+
+#audio {
+    display: none;
+}
+
+
+
+/* xs */
+
+@media(max-width:767px) {
+    #dropzone {
+        font-size: 100px;
+    }
+}
+
+
+/* s */
+
+@media(min-width:768px) {
+    #dropzone {
+        font-size: 150px;
+    }
+}
+
+
+/* m */
+
+@media(min-width:992px) {
+    #dropzone {
+        font-size: 200px;
+    }
+}
+
+
+/* lg */
+
+@media(min-width:1200px) {
+    #dropzone {
+        font-size: 260px;
+    }
+}
