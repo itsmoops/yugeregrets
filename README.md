@@ -11,3 +11,4 @@
 - [ ] Blacklist if tweet has a photo
 - [ ] Add fadeout to vinyl sound in Logic
 - [ ] Remove video of shaking dandelion? Too distracting?
+- [ ] Add nature sound FX?
