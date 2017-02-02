@@ -80,23 +80,23 @@ a:focus {
 }
 @keyframes scrollup {
     from { top: 100%; }
-    to   { top: -125%; }
+    to   { top: -200%; }
 }
 @-moz-keyframes scrollup {
     from { top: 100%; }
-    to   { top: -125%; }
+    to   { top: -200%; }
 }
 @-webkit-keyframes scrollup {
     from { top: 100%; }
-    to   { top: -125%; }
+    to   { top: -200%; }
 }
 @-ms-keyframes scrollup {
     from { top: 100%; }
-    to   { top: -125%; }
+    to   { top: -200%; }
 }
 @-o-keyframes scrollup {
     from { top: 100%; }
-    to   { top: -125%; }
+    to   { top: -200%; }
 }
 
 .fullscreen {
