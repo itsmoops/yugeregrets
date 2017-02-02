@@ -12,3 +12,4 @@
 - [ ] Add fadeout to vinyl sound in Logic
 - [ ] Remove video of shaking dandelion? Too distracting?
 - [ ] Add nature sound FX?
+- [ ] Add ability to link to specific tweet
