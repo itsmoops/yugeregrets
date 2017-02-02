@@ -10,7 +10,9 @@
 - [ ] Add two icon buttons to mute song and text
 - [ ] Blacklist if tweet has a photo
 - [ ] Add fadeout to vinyl sound in Logic
-- [ ] Remove video of shaking dandelion? Too distracting?
+- [ ] Remove video of shaking dandelion. Too distracting.
+- [ ] Convert more sick ass nature videos
 - [ ] Add nature sound FX?
 - [ ] Add ability to link to specific tweet
-- [ ] Add tweet caching and only hit API once per day to get 50 tweets
+- [ ] Create local copy of twitter json. Only hit their API once per day and grab 50 tweets
+- [ ] Make tweet text into anchor that links to the actual tweet on Twitter
