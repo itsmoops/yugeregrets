@@ -20,7 +20,7 @@ function loadTweet() {
       $("#donate").addClass("fade-in")
       setTimeout(function(){
         $("#reset").addClass("fade-in")
-      }, 3000)
+      }, 5000)
     }, 15000)
   }, 3000)
 }
