@@ -13,3 +13,4 @@
 - [ ] Remove video of shaking dandelion? Too distracting?
 - [ ] Add nature sound FX?
 - [ ] Add ability to link to specific tweet
+- [ ] Add tweet caching and only hit API once per day to get 50 tweets
