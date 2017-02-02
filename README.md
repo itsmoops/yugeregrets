@@ -9,3 +9,5 @@
 - [ ] Bingo rotation so you don’t see repeat tweets
 - [ ] Add two icon buttons to mute song and text
 - [ ] Blacklist if tweet has a photo
+- [ ] Add fadeout to vinyl sound in Logic
+- [ ] Remove video of shaking dandelion? Too distracting?
