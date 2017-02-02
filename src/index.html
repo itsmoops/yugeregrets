@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -9,20 +8,15 @@
     <meta name="description" content="Subheading for social media!">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Alice" rel="stylesheet">
-
     <link rel="stylesheet" href="./css/main.css">
 </head>
-
 <body>
     <!-- App -->
-    <div id="title" class="container title-container">
+    <div id="title" class="container title-container fade-in">
         <div class="content">
             <div class="col-xs-6">
                 <p class="title">
@@ -39,11 +33,26 @@
         </div>
     </div>
     <!-- TODO the scrolling text should be an anchor that links to the tweet  -->
-    <!-- <div id="ragrats" class="fullscreen">
-        <video id="video" class="fullscreen-video" autoplay>
-            <source src="./video/DancingLeaf.webm" type="video/webm">
+    <div id="ragrats" class="fullscreen">
+        <video id="video" class="fullscreen-video" autoplay loop muted>
+            <source src="" type="video/webm">
         </video>
-    </div> -->
+        <div id="tweet-container">
+            <p id="tweet">
+            </p>
+            <p id="author">
+            </p>
+        </div>
+        <div id="donate">
+            <p>
+                Make you feel bad? You're probably a good person.<br/>
+                <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
+            </p>
+            <p id="reset">
+                (oh what the hell, <a onclick="window.location.reload()">one more time</a>)
+            </p>
+        </div>
+    </div>
     <!-- TODO ACLU donation link -->
     <audio id="audio" controls autoplay>
       <source src="./audio/yugeregrets.mp3" type="audio/mpeg">
@@ -62,5 +71,4 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./bundle.js"></script>
 </body>
-
 </html>
