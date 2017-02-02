@@ -71,11 +71,11 @@ a:focus {
 
 /*Scroll Up*/
 .scroll-up {
-    -webkit-animation: scrollup 25s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: scrollup 25s; /* Firefox < 16 */
-        -ms-animation: scrollup 25s; /* Internet Explorer */
-         -o-animation: scrollup 25s; /* Opera < 12.1 */
-            animation: scrollup 25s;
+    -webkit-animation: scrollup 30s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: scrollup 30s; /* Firefox < 16 */
+        -ms-animation: scrollup 30s; /* Internet Explorer */
+         -o-animation: scrollup 30s; /* Opera < 12.1 */
+            animation: scrollup 30s;
     animation-fill-mode: forwards;
 }
 @keyframes scrollup {
