@@ -1,4 +1,4 @@
-# yugeregrets
+# Yuge Regrets
 
 ## TODO
 
@@ -16,3 +16,5 @@
 - [ ] Add ability to link to specific tweet
 - [ ] Create local copy of twitter json. Only hit their API once per day and grab 50 tweets
 - [ ] Make tweet text into anchor that links to the actual tweet on Twitter
+- [ ] Get DNS settings working on namecheap
+- [ ] Upgrade Heroku package
