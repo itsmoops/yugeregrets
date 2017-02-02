@@ -210,36 +210,14 @@ a:focus {
 }
 
 /* xs */
-
 @media(max-width:767px) {
-    #dropzone {
-        font-size: 100px;
-    }
 }
-
-
 /* s */
-
 @media(min-width:768px) {
-    #dropzone {
-        font-size: 150px;
-    }
 }
-
-
 /* m */
-
 @media(min-width:992px) {
-    #dropzone {
-        font-size: 200px;
-    }
 }
-
-
 /* lg */
-
 @media(min-width:1200px) {
-    #dropzone {
-        font-size: 260px;
-    }
 }
