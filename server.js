@@ -9,7 +9,7 @@ var error = function (err, response, body) {
 };
 
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 8080));
 app.set('json spaces', 2)
 
 app.use(express.static(__dirname + '/src'));
@@ -23,7 +23,7 @@ app.listen(app.get('port'), function() {
 })
 
 app.get('/tweets', function(request, response) {
-  twitter.getSearch({'q':'@realdonaldtrump "voted for you"', 'count': 10}, error, function(data) {
+  twitter.getSearch({'q':'@realdonaldtrump "voted for you"', 'count': 20, 'tweet_mode': 'extended'}, error, function(data) {
     response.json(JSON.parse(data))
   })
   // twitter.getSearch({'q':'"voted for you"','count': 10, 'result\_type':'popular'}, error, function(data) {
