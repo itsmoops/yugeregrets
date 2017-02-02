@@ -1,5 +1,4 @@
-// TODO: make blacklist of words we dont want in tweets - proud, honored, happy
-// blacklist if tweet has a photo
+// TODO: blacklist if tweet has a photo
 
 var blackList = ["great", "proud", " happy", "thanks", "thank you", "courage", "courageous", "…", "...", "http", "https", "www", "appreciate", "god"]
 var tweets = []
