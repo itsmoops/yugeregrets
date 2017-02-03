@@ -1,4 +1,4 @@
-// TODO: blacklist if tweet has a photo
+import './css/main.styl'
 
 var blackList = ["great", "proud", " happy", "thanks", "thank you", "courage", "courageous", "…", "...", "http", "https", "www", "appreciate", "god"]
 var tweets = []

@@ -1,19 +1,40 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer')
+const path = require('path')
+
 module.exports = {
     entry: "./src/app.js",
     target: 'web',
     output: {
-        path: __dirname,
-        filename: "./src/bundle.js"
+      path: path.join(__dirname, '/src/dist/'),
+      filename: '[name].bundle.js'
     },
     devServer: {
       historyApiFallback: true,
       watchOptions: { aggregateTimeout: 300, poll: 1000 }
     },
     module: {
-        loaders: [
-            { test: /\.css$/, loader: "style!css" }
-        ]
+      rules: [
+        {
+          test: /\.styl$/,
+          use: [
+            'style-loader',
+            'css-loader?importLoaders=1',
+            'postcss-loader',
+            'stylus-loader'
+          ]
+        }, {
+          test: /\.(jpg|png|svg)$/,
+          loader: 'url-loader',
+          options: {
+            limit: 25000,
+          }
+        }, {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loaders: [ 'babel-loader' ]
+        }
+      ]
     },
     plugins: [
         new webpack.ProvidePlugin({
@@ -21,12 +42,10 @@ module.exports = {
             jQuery: "jquery",
             "window.jQuery": "jquery"
         }),
-        new webpack.optimize.DedupePlugin()
-        // new webpack.optimize.UglifyJsPlugin({
-        //      minimize: true,
-        //      compress: {
-        //        warnings: false
-        //      }
-        //     })
+        new webpack.LoaderOptionsPlugin({
+          options: {
+            postcss: [ autoprefixer ]
+          }
+        })
     ]
 };

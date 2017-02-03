@@ -2,3 +2,5 @@ node_modules/
 src/video/*.mp4
 npm-debug.log
 bundle.js
+src/dist
+data/tweets.json
