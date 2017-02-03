@@ -37,19 +37,17 @@
         <video id="video" class="fullscreen-video" autoplay loop muted>
             <source src="" type="video/webm">
         </video>
-        <div id="tweet-container">
-            <p id="tweet"></p>
-            <p id="author"></p>
+        <div id="tweet-border">
+            <div id="tweet-container">
+                <p id="tweet"></p>
+                <p id="author"></p>
+            </div>
         </div>
-        <div id="donate">
-            <p>
-                Make you feel bad? You're probably a good person.<br/>
-                <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
-            </p>
-            <p id="reset">
-                (oh what the hell, <a onclick="window.location.reload()">one more time</a>)
-            </p>
-        </div>
+    </div>
+    <div id="donate">
+        <p>
+            Make you feel bad? You're probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
+        </p>
     </div>
     <audio id="audio" controls autoplay>
       <source src="./audio/yugeregrets.mp3" type="audio/mpeg">
@@ -66,6 +64,6 @@
     <script src="./js/responsivevoice.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="./bundle.js"></script>
+    <script src="./app.js"></script>
 </body>
 </html>

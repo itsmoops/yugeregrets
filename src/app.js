@@ -12,15 +12,10 @@ function loadTweet() {
     writtenTweet = randStatus.full_text.replace(/RT @.+?:/g, '')
     $("#tweet").text(writtenTweet)
     $("#author").text("-" + randStatus.user.screen_name)
-    $("#tweet-container").addClass("scroll-up")
     $('#ragrats').addClass("fade-in")
+    $("#tweet-container").addClass("scroll-up")
+    $("#donate").addClass("fade-in")
     speakTweet(writtenTweet)
-    setTimeout(function(){
-      $("#donate").addClass("fade-in")
-      setTimeout(function(){
-        $("#reset").addClass("fade-in")
-      }, 5000)
-    }, 15000)
   }, 3000)
 }
 
@@ -44,7 +39,7 @@ function filterTweets() {
 }
 
 function loadVideo() {
-  var num = Math.floor(Math.random() * 13) + 1
+  var num = Math.floor(Math.random() * 18) + 1
   var sourceUrl = "./video/" + num + ".webm"
   var video = document.getElementById("video")
   video.src = sourceUrl

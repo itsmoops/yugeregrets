@@ -42,7 +42,7 @@ function _fileExists(filePath) {
 
 function _getTweets(filePath) {
   return new Promise(function(resolve, reject) {
-    twitter.getSearch({'q':'@realdonaldtrump "voted for you"', 'count': 50, 'tweet_mode': 'extended'}, error, function(data) {
+    twitter.getSearch({'q':'@realdonaldtrump "voted for you"', 'count': 100, 'tweet_mode': 'extended'}, error, function(data) {
       data = JSON.parse(data)
       data.DATE_GENERATED = moment()
       var spaces = {spaces: 2};
@@ -69,22 +69,18 @@ app.get('/tweets', function(request, response) {
         * so we check against the "DATE_GENERATED" property */
         if (today.isAfter(tweets.DATE_GENERATED, 'day')) {
             // if it's been more than a day, regenerate tweets
-            console.log("it's been a day, let's regenerate")
             _getTweets(filePath).then(function(data) {
               tweets = data
-              console.log("it's been a day, let's regenerate", tweets.statuses[0].full_text)
               response.json(tweets)
             })
         } else {
           // if it hasn't been a day, don't regenerate
-          console.log("serving existing tweets:", tweets.statuses[0].full_text)
           response.json(tweets)
         }
       } else {
         // generate tweets for the first time if file doesn't exist
         _getTweets(filePath).then(function(data){
           tweets = data
-          console.log("no tweets exist, let's get some", tweets.statuses[0].full_text)
           response.json(tweets)
         })
       }
