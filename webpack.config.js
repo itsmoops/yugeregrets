@@ -7,7 +7,8 @@ module.exports = {
     target: 'web',
     output: {
       path: path.join(__dirname, '/src/dist/'),
-      filename: '[name].bundle.js'
+      filename: '[name].bundle.js',
+      publicPath: '/dist/'
     },
     devServer: {
       historyApiFallback: true,
