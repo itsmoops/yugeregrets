@@ -62,7 +62,6 @@ app.get('/tweets', function(request, response) {
 
   var tweets = {}
   _fileExists(filePath).then(function(exists) {
-      console.log("exists:", exists)
       if (exists) {
         tweets = require(filePath)
         /* we only want to generate new tweets once per day
