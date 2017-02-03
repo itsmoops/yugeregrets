@@ -30,7 +30,7 @@ app.listen(app.get('port'), function() {
 */
 function _fileExists(filePath) {
     return new Promise(function(resolve, reject) {
-        fs.stat(filePath, (err, stat) => {
+        fs.stat(filePath, function(err, stat) {
             if (err == null) {
                  resolve(true)
             } else if (err && err.code == 'ENOENT') {
@@ -46,7 +46,7 @@ function _getTweets(filePath) {
       data = JSON.parse(data)
       data.DATE_GENERATED = moment()
       var spaces = {spaces: 2};
-      jsonfile.writeFile(filePath, data, spaces, (err) => {
+      jsonfile.writeFile(filePath, data, spaces, function(err) {
           if (err) {
               console.log(err)
           }
@@ -58,11 +58,10 @@ function _getTweets(filePath) {
 
 app.get('/tweets', function(request, response) {
   var filePath = './data/tweets.json'
-  var today = moment();
-
   var tweets = {}
   _fileExists(filePath).then(function(exists) {
       if (exists) {
+        var today = moment();
         tweets = require(filePath)
         /* we only want to generate new tweets once per day
         * so we check against the "DATE_GENERATED" property */
@@ -84,5 +83,4 @@ app.get('/tweets', function(request, response) {
         })
       }
   })
-  // response.json(data)
 })
