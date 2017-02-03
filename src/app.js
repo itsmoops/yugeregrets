@@ -70,8 +70,8 @@ if (typeof window !== "undefined") {
     });
 
     setTimeout(function(){
-      // loadTweet()
       speakIntro()
+      // loadTweet()
     }, 1500)
   })
 }
