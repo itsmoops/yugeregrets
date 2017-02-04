@@ -130,12 +130,16 @@ class Main extends Component {
 
   render () {
     const { tweet, index } = this.state
+    let author
+    if (tweet) {
+       author = tweet.retweeted_status && tweet.retweeted_status.user ? tweet.retweeted_status.user.screen_name : "Trump_Regrets"
+    }
     return (
       <CSSTransitionGroup transitionName="fade">
         { tweet ? (
           <TweetContainer showACLUMessage={ index > 2 } key="tweets">
             <CSSTransitionGroup transitionName="fade">
-              <Tweet text={ tweet.full_text } author={ `-${tweet.retweeted_status.user.screen_name}` } key={ index } />
+              <Tweet text={ tweet.full_text } author={ `- @${author}` } key={ index } />
             </CSSTransitionGroup>
           </TweetContainer>
         ) : (
