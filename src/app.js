@@ -94,18 +94,14 @@ class Intro extends Component {
     return (
       <div className="container title-container fade-appear">
         <div className="content">
-          <div className="col-xs-6">
-            <p className="title">
-              Yuge <br/>
-              Regrets
-            </p>
-          </div>
-          <div className="col-xs-6">
-            <p className="title-author">
-              by <br/>
-              REMORSEFUL TRUMP VOTERS
-            </p>
-          </div>
+          <h1 className="title">
+            Yuge <br/>
+            Regrets
+          </h1>
+          <h2 className="title-author">
+            by <br/>
+            REMORSEFUL TRUMP VOTERS
+          </h2>
         </div>
       </div>
     )
