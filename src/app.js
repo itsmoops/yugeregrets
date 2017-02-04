@@ -112,24 +112,52 @@ class Intro extends Component {
   }
 }
 
+const MuteButton = ({ enabled, onClick, children }) => (
+  <button className="controls__button" type="button" onClick={ () => onClick(!enabled) }>
+    { children }
+    { enabled ? '🔊' : '🔇' }
+  </button>
+)
+
+class Controls extends Component {
+  render () {
+    const { music, speech, onMuteSpeech, onMuteMusic } = this.props
+
+    return (
+      <div className="controls">
+        <MuteButton enabled={ music } onClick={ onMuteMusic }> Music </MuteButton>
+        <MuteButton enabled={ speech } onClick={ onMuteSpeech }> Speech </MuteButton>
+      </div>
+    )
+  }
+}
+
 class Main extends Component {
+  state = {
+    tweet: null,
+    index: null,
+    music: true,
+    speech: true
+  }
+
   componentDidMount () {
+    speakIntro()
+
     Promise.all([
       getTweets(),
-      speakIntro()
+      delay(5000)
     ])
       .then(([ tweets ]) => tweets.reduce((prom, tweet, index) => prom.then(() => {
         this.setState({ tweet, index })
-        return Promise.all([
-          speak(tweet.full_text),
-          delay(11000) // scroll transition minus fade transition
-        ])
+        window.responsiveVoice.cancel()
+        if (this.state.speech) speak(tweet.full_text)
+        return delay(11000) // scroll transition minus fade transition
       }), Promise.resolve()))
       .then(() => alert('done!'))
   }
 
   render () {
-    const { tweet, index } = this.state
+    const { tweet, index, music, speech } = this.state
     return (
       <CSSTransitionGroup transitionName="fade">
         { tweet ? (
@@ -141,8 +169,28 @@ class Main extends Component {
         ) : (
           <Intro key="intro" />
         ) }
+
+        <Controls onMuteSpeech={ this.onMuteSpeech } onMuteMusic={ this.onMuteMusic } music={ music } speech={ speech } />
+
+        <audio className="audio" controls autoPlay={ music } ref={ audio => { this.audio = audio } }>
+          <source src="./audio/yugeregrets.mp3" type="audio/mpeg" />
+        </audio>
       </CSSTransitionGroup>
     )
+  }
+
+  onMuteSpeech = speech => {
+    this.setState({ speech })
+    if (!speech) window.responsiveVoice.cancel()
+  }
+
+  onMuteMusic = music => {
+    this.setState({ music })
+    if (music) {
+      this.audio.play()
+    } else {
+      this.audio.pause()
+    }
   }
 }
 
