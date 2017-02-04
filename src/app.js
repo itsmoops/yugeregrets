@@ -11,6 +11,8 @@ const sanitizeSpeech = text => text
 
 const speakIntro = () => speak("And now, 'yuuj' regrets. By remorseful Trump voters.")
 
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+
 const speak = text => new Promise(resolve =>
   window.responsiveVoice.speak(sanitizeSpeech(text), 'US English Male', { rate: 0.75, pitch: 0.8, onend: resolve })
 )
@@ -50,9 +52,11 @@ class Tweet extends Component {
     const { text, author } = this.props
 
     return (
-      <div className="tweet-container scroll-up">
-        <p className="tweet">{ text }</p>
-        <p className="author">{ author }</p>
+      <div className="tweet-border">
+        <div className="tweet-container">
+          <p className="tweet">{ text }</p>
+          <p className="author">{ author }</p>
+        </div>
       </div>
     )
   }
@@ -65,13 +69,11 @@ class TweetContainer extends Component {
     const videoSource = `/video/${videoID}.webm`
 
     return (
-      <div id="ragrats" className="fullscreen fade-appear">
-        <div id="tweet-border">
-          { children }
-        </div>
+      <div className="fullscreen fade-appear ragrats">
+        { children }
 
         { showACLUMessage && (
-          <div id="donate" className="fade-appear">
+          <div className="donate fade-appear">
             <p>
               Make you feel bad? You're probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
             </p>
@@ -115,7 +117,10 @@ class Main extends Component {
     ])
       .then(([ tweets ]) => tweets.reduce((prom, tweet, index) => prom.then(() => {
         this.setState({ tweet, index })
-        return speak(tweet.full_text)
+        return Promise.all([
+          speak(tweet.full_text),
+          delay(11000) // scroll transition minus fade transition
+        ])
       }), Promise.resolve()))
       .then(() => alert('done!'))
   }
@@ -126,10 +131,12 @@ class Main extends Component {
       <CSSTransitionGroup transitionName="fade">
         { tweet ? (
           <TweetContainer showACLUMessage={ index > 2 } key="tweets">
-            <Tweet text={ tweet.full_text } author={ tweet.user.screen_name } key={ index } />
+            <CSSTransitionGroup transitionName="fade">
+              <Tweet text={ tweet.full_text } author={ tweet.user.screen_name } key={ index } />
+            </CSSTransitionGroup>
           </TweetContainer>
         ) : (
-          <Intro key="intro"/>
+          <Intro key="intro" />
         ) }
       </CSSTransitionGroup>
     )
