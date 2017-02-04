@@ -1,6 +1,7 @@
 import './css/main.styl'
 import preact, { render, Component } from 'preact' // eslint-disable-line
 import shuffle from 'array-shuffle'
+import CSSTransitionGroup from 'preact-css-transition-group'
 
 const blackList = ['great', 'proud', ' happy', 'thanks', 'thank you', 'courage', 'courageous', '…', '...', 'http', 'https', 'www', 'appreciate', 'god']
 
@@ -64,13 +65,13 @@ class TweetContainer extends Component {
     const videoSource = `/video/${videoID}.webm`
 
     return (
-      <div id="ragrats" className="fullscreen fade-in">
+      <div id="ragrats" className="fullscreen fade-appear">
         <div id="tweet-border">
           { children }
         </div>
 
         { showACLUMessage && (
-          <div id="donate" className="fade-in">
+          <div id="donate" className="fade-appear">
             <p>
               Make you feel bad? You're probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
             </p>
@@ -86,7 +87,7 @@ class TweetContainer extends Component {
 class Intro extends Component {
   render () {
     return (
-      <div className="container title-container fade-in">
+      <div className="container title-container fade-appear">
         <div className="content">
           <div className="col-xs-6">
             <p className="title">
@@ -121,16 +122,17 @@ class Main extends Component {
 
   render () {
     const { tweet, index } = this.state
-
-    if (!tweet) {
-      return <Intro />
-    } else {
-      return (
-        <TweetContainer showACLUMessage={ index > 2 }>
-          <Tweet text={ tweet.full_text } author={ tweet.user.screen_name } key={ index } />
-        </TweetContainer>
-      )
-    }
+    return (
+      <CSSTransitionGroup transitionName="fade">
+        { tweet ? (
+          <TweetContainer showACLUMessage={ index > 2 } key="tweets">
+            <Tweet text={ tweet.full_text } author={ tweet.user.screen_name } key={ index } />
+          </TweetContainer>
+        ) : (
+          <Intro key="intro"/>
+        ) }
+      </CSSTransitionGroup>
+    )
   }
 }
 

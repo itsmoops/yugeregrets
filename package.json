@@ -33,6 +33,7 @@
     "moment": "^2.17.1",
     "postcss-loader": "^1.2.2",
     "preact": "^7.1.0",
+    "preact-css-transition-group": "^1.1.1",
     "require": "^2.4.20",
     "style-loader": "^0.13.0",
     "stylus": "^0.54.5",
