@@ -48,8 +48,13 @@ const getTweets = () => fetchTweets()
   )
 
 class Tweet extends Component {
+  state = { videoID: Math.floor(Math.random() * 18) + 1 }
+
   render () {
     const { text, author } = this.props
+    const { videoID } = this.state
+
+    const videoSource = `/video/${videoID}.webm`
 
     return (
       <div className="tweet-border">
@@ -57,6 +62,8 @@ class Tweet extends Component {
           <p className="tweet">{ text }</p>
           <p className="author">{ author }</p>
         </div>
+
+        <video src={ videoSource } key={ videoSource } className="fullscreen-video" autoPlay loop muted />
       </div>
     )
   }
@@ -65,8 +72,6 @@ class Tweet extends Component {
 class TweetContainer extends Component {
   render () {
     const { children, showACLUMessage } = this.props
-    const videoID = Math.floor(Math.random() * 18) + 1
-    const videoSource = `/video/${videoID}.webm`
 
     return (
       <div className="fullscreen fade-appear ragrats">
@@ -79,8 +84,6 @@ class TweetContainer extends Component {
             </p>
           </div>
         ) }
-
-        <video src={ videoSource } key={ videoSource } className="fullscreen-video" autoPlay loop muted />
       </div>
     )
   }
