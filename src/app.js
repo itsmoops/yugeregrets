@@ -57,10 +57,12 @@ class Tweet extends Component {
     const videoSource = `/video/${videoID}.webm`
 
     return (
-      <div className="tweet-border">
-        <div className="tweet-container">
-          <p className="tweet">{ text }</p>
-          <p className="author">{ author }</p>
+      <div className="tweet">
+        <div className="tweet__container">
+          <div className="tweet__body">
+            <p className="tweet__text">{ text }</p>
+            <p className="tweet__author">{ author }</p>
+          </div>
         </div>
 
         <video src={ videoSource } key={ videoSource } className="fullscreen-video" autoPlay loop muted />
@@ -78,11 +80,9 @@ class TweetContainer extends Component {
         { children }
 
         { showACLUMessage && (
-          <div className="donate fade-appear">
-            <p>
-              Make you feel bad? You're probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
-            </p>
-          </div>
+          <p className="donate fade-appear">
+            Make you feel bad? You're probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
+          </p>
         ) }
       </div>
     )
