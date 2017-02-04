@@ -1,5 +1,13 @@
 # Yuge Regrets
 
-## TODO
+## Contributing
 
-- [x] remove TODO from readme and make a kanban board on GH
+**Installing**
+```sh
+$ npm i
+```
+
+**Running**
+```sh
+$ npm run dev
+```
