@@ -41,7 +41,7 @@ const fetchTweets = () => new Promise((resolve, reject) => {
 
 const getTweets = () => fetchTweets()
   .then(msg =>
-    shuffle(filterTweets(msg.statuses)).map(tweet => ({
+    shuffle(filterTweets(msg)).map(tweet => ({
       ...tweet,
       full_text: tweet.full_text.replace(/RT @.+?:/g, '').replace('&amp;', '&')
     }))
@@ -54,7 +54,7 @@ class Tweet extends Component {
     const { text, author } = this.props
     const { videoID } = this.state
 
-    const videoSource = `/video/${videoID}.webm`
+    const videoSource = `/video/${videoID}.mp4`
 
     return (
       <div className="tweet">
@@ -81,7 +81,7 @@ class TweetContainer extends Component {
 
         { showACLUMessage && (
           <p className="donate fade-appear">
-            Make you feel bad? You're probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
+            Make you feel bad{"?"} You{"'"}re probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
           </p>
         ) }
       </div>
@@ -158,12 +158,17 @@ class Main extends Component {
 
   render () {
     const { tweet, index, music, speech } = this.state
+    let author
+    if (tweet) {
+       author = tweet.retweeted_status && tweet.retweeted_status.user ? tweet.retweeted_status.user.screen_name : "Trump_Regrets"
+    }
+    
     return (
       <CSSTransitionGroup transitionName="fade">
         { tweet ? (
           <TweetContainer showACLUMessage={ index > 2 } key="tweets">
             <CSSTransitionGroup transitionName="fade">
-              <Tweet text={ tweet.full_text } author={ tweet.user.screen_name } key={ index } />
+              <Tweet text={ tweet.full_text } author={ `- @${author}` } key={ index } />
             </CSSTransitionGroup>
           </TweetContainer>
         ) : (

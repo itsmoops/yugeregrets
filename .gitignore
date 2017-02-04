@@ -1,5 +1,5 @@
 node_modules/
-src/video/*.mp4
+src/video/*.webm
 npm-debug.log
 bundle.js
 src/dist
