@@ -164,6 +164,7 @@ a:focus
   position fixed
   width 100%
   top 100%
+  left 0
   z-index 100
   padding 20px 0 10px
   text-align center
@@ -176,5 +177,24 @@ a:focus
     padding-left 10px
     padding-right 10px
 
-#audio
+.controls
+  position fixed
+  bottom 13px
+  left 13px
+  border 1px solid white
+  border-radius 3px
+  z-index 10
+
+.controls__button
+  border 0px none transparent
+  border-left 1px solid white
+  margin-left -1px
+  background-color transparent
+  font-family sans-serif
+  font-size 10px
+  display block
+  float left
+  padding 3px 10px
+
+.audio
   display none
