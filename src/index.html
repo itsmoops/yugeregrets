@@ -15,42 +15,12 @@
 </head>
 <body>
     <!-- App -->
-    <div id="title" class="container title-container fade-in">
-        <div class="content">
-            <div class="col-xs-6">
-                <p class="title">
-                    Yuge <br/>
-                    Regrets
-                </p>
-            </div>
-            <div class="col-xs-6">
-                <p class="title-author">
-                    by <br/>
-                    REMORSEFUL TRUMP VOTERS
-                </p>
-            </div>
-        </div>
-    </div>
-    <!-- TODO the scrolling text should be an anchor that links to the tweet  -->
-    <div id="ragrats" class="fullscreen">
-        <video id="video" class="fullscreen-video" autoplay loop muted>
-            <source src="" type="video/webm">
-        </video>
-        <div id="tweet-border">
-            <div id="tweet-container">
-                <p id="tweet"></p>
-                <p id="author"></p>
-            </div>
-        </div>
-    </div>
-    <div id="donate">
-        <p>
-            Make you feel bad? You're probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
-        </p>
-    </div>
+    <div id="app"></div>
+
     <audio id="audio" controls autoplay>
       <source src="./audio/yugeregrets.mp3" type="audio/mpeg">
     </audio>
+
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
