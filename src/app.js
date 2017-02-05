@@ -5,6 +5,12 @@ import shuffle from 'array-shuffle'
 import CSSTransitionGroup from 'preact-css-transition-group'
 import { Howl } from 'howler'
 
+const TWEET_BLACK_LIST = [ '…', '...', 'http', 'https', 'www' ]
+
+const NUMBER_OF_VIDEOS = 18
+
+const VIDEO_IDS = shuffle([...Array(NUMBER_OF_VIDEOS).keys()])
+
 const intro = new Howl({
   src: ['./audio/yugeregrets-intro.mp3'],
   onend: () => loopAudio()
@@ -20,8 +26,6 @@ const end = new Howl({
 })
 
 const howls = [intro, loop, end]
-
-const TWEET_BLACK_LIST = [ '…', '...', 'http', 'https', 'www' ]
 
 const sanitizeSpeech = text => sanitizeText(text)
   .replace(/^[^0-9a-z]/gi, '')
@@ -73,11 +77,10 @@ const getTweets = () => fetchTweets()
   )
 
 class Tweet extends Component {
-  state = { videoID: Math.floor(Math.random() * 18) + 1 }
-
   render () {
-    const { id_str: id, full_text: text, user } = this.props.tweet.retweeted_status
-    const { videoID } = this.state
+    const { index, tweet } = this.props
+    const { id_str: id, full_text: text, user } = tweet.retweeted_status
+    const videoID = VIDEO_IDS[index % NUMBER_OF_VIDEOS] + 1
 
     return (
       <div className="tweet">
@@ -90,10 +93,7 @@ class Tweet extends Component {
           </div>
         </div>
 
-        <video key={ videoID } className="fullscreen-video" autoPlay loop muted>
-          <source src={ `/video/${videoID}.webm` } type="video/webm" />
-          <source src={ `/video/${videoID}.mp4` } type="video/mp4" />
-        </video>
+        <video key={ id } src={ `/video/${videoID}.mp4` } className="fullscreen-video" autoPlay loop muted />
       </div>
     )
   }
@@ -209,7 +209,7 @@ class Main extends Component {
           { tweet ? (
             <TweetContainer showACLUMessage={ index > 2 } key="tweets">
               <CSSTransitionGroup transitionName="fade">
-                <Tweet tweet={tweet} key={ index } />
+                <Tweet tweet={tweet} key={ '' + index } index={ index } />
               </CSSTransitionGroup>
             </TweetContainer>
           ) : (
