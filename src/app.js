@@ -18,7 +18,7 @@ const speak = text => new Promise(resolve =>
 )
 
 const filterTweets = tweets => tweets.filter(tweet => blackList.every(filter =>
-  !tweet.full_text.toLowerCase().includes(filter)
+  ('retweeted_status' in tweet) && !tweet.full_text.toLowerCase().includes(filter)
 ))
 
 const fetchTweets = () => new Promise((resolve, reject) => {
@@ -54,8 +54,6 @@ class Tweet extends Component {
     const { text, author } = this.props
     const { videoID } = this.state
 
-    const videoSource = `/video/${videoID}.mp4`
-
     return (
       <div className="tweet">
         <div className="tweet__container">
@@ -65,7 +63,10 @@ class Tweet extends Component {
           </div>
         </div>
 
-        <video src={ videoSource } key={ videoSource } className="fullscreen-video" autoPlay loop muted />
+        <video key={ videoID } className="fullscreen-video" autoPlay loop muted>
+          <source src={ `/video/${videoID}.webm` } type="video/webm" />
+          <source src={ `/video/${videoID}.mp4` } type="video/mp4" />
+        </video>
       </div>
     )
   }
@@ -81,7 +82,7 @@ class TweetContainer extends Component {
 
         { showACLUMessage && (
           <p className="donate fade-appear">
-            Make you feel bad{"?"} You{"'"}re probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
+            Make you feel bad{'?'} You{"'"}re probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
           </p>
         ) }
       </div>
@@ -141,11 +142,10 @@ class Main extends Component {
 
     Promise.all([
       getTweets(),
-      delay(5000)
+      delay(10000)
     ])
       .then(([ tweets ]) => tweets.reduce((prom, tweet, index) => prom.then(() => {
         this.setState({ tweet, index })
-        window.responsiveVoice.cancel()
         if (this.state.speech) speak(tweet.full_text)
         return delay(11000) // scroll transition minus fade transition
       }), Promise.resolve()))
@@ -154,29 +154,27 @@ class Main extends Component {
 
   render () {
     const { tweet, index, music, speech } = this.state
-    let author
-    if (tweet) {
-       author = tweet.retweeted_status && tweet.retweeted_status.user ? tweet.retweeted_status.user.screen_name : "Trump_Regrets"
-    }
-    
+
     return (
-      <CSSTransitionGroup transitionName="fade">
-        { tweet ? (
-          <TweetContainer showACLUMessage={ index > 2 } key="tweets">
-            <CSSTransitionGroup transitionName="fade">
-              <Tweet text={ tweet.full_text } author={ `- @${author}` } key={ index } />
-            </CSSTransitionGroup>
-          </TweetContainer>
-        ) : (
-          <Intro key="intro" />
-        ) }
+      <div>
+        <CSSTransitionGroup transitionName="fade">
+          { tweet ? (
+            <TweetContainer showACLUMessage={ index > 2 } key="tweets">
+              <CSSTransitionGroup transitionName="fade">
+                <Tweet text={ tweet.full_text } author={ tweet.retweeted_status.user } key={ index } />
+              </CSSTransitionGroup>
+            </TweetContainer>
+          ) : (
+            <Intro key="intro" />
+          ) }
+        </CSSTransitionGroup>
 
         <Controls onMuteSpeech={ this.onMuteSpeech } onMuteMusic={ this.onMuteMusic } music={ music } speech={ speech } />
 
-        <audio className="audio" controls autoPlay={ music } ref={ audio => { this.audio = audio } }>
+        <audio className="audio" controls autoPlay ref={ audio => { this.audio = audio } }>
           <source src="./audio/yugeregrets.mp3" type="audio/mpeg" />
         </audio>
-      </CSSTransitionGroup>
+      </div>
     )
   }
 
