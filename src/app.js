@@ -10,7 +10,7 @@ const intro = new Howl({
 })
 
 const loop = new Howl({
-  src: ['./audio/yugeregrets-loop3.mp3'],
+  src: ['./audio/yugeregrets-loop.mp3'],
   loop: true
 })
 
