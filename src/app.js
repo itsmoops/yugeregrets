@@ -28,10 +28,10 @@ const end = new Howl({
 const howls = [intro, loop, end]
 
 const sanitizeSpeech = text => sanitizeText(text)
+  .replace('@realDonaldTrump', 'At Real Donald Trump')
   .toLowerCase()
   .replace(/^[^0-9a-z]/gi, '')
-  .replace('@realDonaldTrump', 'At Real Donald Trump')
-  .replace('#', "hashtag")
+  .replace('#', "hashtag") && console.log(text)
 
 const sanitizeText = text => text
   .replace(/RT @.+?:/g, '')
@@ -41,7 +41,7 @@ const startMusic = () => intro.play()
 
 const loopAudio = () => loop.play()
 
-const speakIntro = () => speak("And now, 'yuuj' regrets. By remorseful Trump voters.")
+const speakIntro = () => speak("And now, yuuj regrets. By remorseful Trump voters.")
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -128,7 +128,7 @@ class TweetContainer extends Component {
 class Intro extends Component {
   render () {
     return (
-      <div className="container title-container fade-appear">
+      <div className="container fade-appear">
         <div className="content">
           <h1 className="title">
             Yuge <br/>
@@ -206,7 +206,7 @@ class Main extends Component {
     const { tweet, index, music, speech } = this.state
 
     return (
-      <div>
+      <div className="fill">
         <CSSTransitionGroup transitionName="fade">
           { tweet ? (
             <TweetContainer showACLUMessage={ index > 2 } key="tweets">
