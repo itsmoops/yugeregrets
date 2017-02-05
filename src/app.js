@@ -2,12 +2,33 @@ import './css/main.styl'
 import preact, { render, Component } from 'preact' // eslint-disable-line
 import shuffle from 'array-shuffle'
 import CSSTransitionGroup from 'preact-css-transition-group'
+import 'howler'
+
+const intro = new Howl({
+  src: ['./audio/yugeregrets-intro.mp3'],
+  onend: () => loopAudio()
+})
+
+const loop = new Howl({
+  src: ['./audio/yugeregrets-loop3.mp3'],
+  loop: true
+})
+
+const end = new Howl({
+  src: ['./audio/yugeregrets-end.mp3']
+})
+
+const howls = [intro, loop, end]
 
 const blackList = ['great', 'proud', ' happy', 'thanks', 'thank you', 'courage', 'courageous', '…', '...', 'http', 'https', 'www', 'appreciate', 'god']
 
 const sanitizeSpeech = text => text
   .replace(/^[^0-9a-z]/gi, '')
   .replace('@realDonaldTrump', 'At Real Donald Trump')
+
+const startMusic = () => intro.play()
+
+const loopAudio = () => loop.play()
 
 const speakIntro = () => speak("And now, 'yuuj' regrets. By remorseful Trump voters.")
 
@@ -143,6 +164,7 @@ class Main extends Component {
   }
 
   componentDidMount () {
+    startMusic()
     speakIntro()
 
     Promise.all([
@@ -154,7 +176,9 @@ class Main extends Component {
         if (this.state.speech) speak(tweet.full_text)
         return delay(11000) // scroll transition minus fade transition
       }), Promise.resolve()))
-      .then(() => alert('done!'))
+      .then(() => loop.on('end', () => {
+        loop.pause() && end.play()
+      }))
   }
 
   render () {
@@ -164,7 +188,7 @@ class Main extends Component {
       <div>
         <CSSTransitionGroup transitionName="fade">
           { tweet ? (
-            <TweetContainer showACLUMessage={ index > 0 } key="tweets">
+            <TweetContainer showACLUMessage={ index > 2 } key="tweets">
               <CSSTransitionGroup transitionName="fade">
                 <Tweet text={ tweet.full_text } author={ tweet.retweeted_status.user } key={ index } />
               </CSSTransitionGroup>
@@ -176,15 +200,6 @@ class Main extends Component {
 
         <Controls onMuteSpeech={ this.onMuteSpeech } onMuteMusic={ this.onMuteMusic } music={ music } speech={ speech } />
 
-        <audio className="audio" controls autoPlay ref={ audio => { this.audio = audio } }>
-          <source src="./audio/yugeregrets-intro.mp3" type="audio/mpeg" />
-        </audio>
-        <audio className="audio" controls ref={ audio => { this.audio = audio } }>
-          <source src="./audio/yugeregrets-loop.mp3" type="audio/mpeg" />
-        </audio>
-        <audio className="audio" controls ref={ audio => { this.audio = audio } }>
-          <source src="./audio/yugeregrets-end.mp3" type="audio/mpeg" />
-        </audio>
       </div>
     )
   }
@@ -197,9 +212,14 @@ class Main extends Component {
   onMuteMusic = music => {
     this.setState({ music })
     if (music) {
-      this.audio.play()
+      this.state.lastPlaying.play()
     } else {
-      this.audio.pause()
+      howls.forEach((howl) => {
+        if (howl.playing()) {
+          howl.pause()
+          this.setState({ lastPlaying: howl })
+        }
+      })
     }
   }
 }
