@@ -24,8 +24,10 @@ const howls = [intro, loop, end]
 const TWEET_BLACK_LIST = [ '…', '...', 'http', 'https', 'www' ]
 
 const sanitizeSpeech = text => sanitizeText(text)
+  .toLowerCase()
   .replace(/^[^0-9a-z]/gi, '')
   .replace('@realDonaldTrump', 'At Real Donald Trump')
+  .replace('#', "hashtag")
 
 const sanitizeText = text => text
   .replace(/RT @.+?:/g, '')
