@@ -152,7 +152,7 @@ class Controls extends Component {
     const { music, speech, onMuteSpeech, onMuteMusic } = this.props
 
     return (
-      <div className="controls">
+      <div className="controls fade-appear">
         <MuteButton enabled={ music } onClick={ onMuteMusic }>
           <svg version="1.1" width="32" height="32" viewBox="0 0 32 32" className="controls__icon">
             <path d="M30 0h2v23c0 2.761-3.134 5-7 5s-7-2.239-7-5c0-2.761 3.134-5 7-5 1.959 0 3.729 0.575 5 1.501v-11.501l-16 3.556v15.444c0 2.761-3.134 5-7 5s-7-2.239-7-5c0-2.761 3.134-5 7-5 1.959 0 3.729 0.575 5 1.501v-19.501l18-4z"></path>
