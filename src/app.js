@@ -20,7 +20,7 @@ const end = new Howl({
 
 const howls = [intro, loop, end]
 
-const blackList = ['great', 'proud', ' happy', 'thanks', 'thank you', 'courage', 'courageous', '…', '...', 'http', 'https', 'www', 'appreciate', 'god']
+const TWEET_BLACK_LIST = [ '…', '...', 'http', 'https', 'www' ]
 
 const sanitizeSpeech = text => sanitizeText(text)
   .replace(/^[^0-9a-z]/gi, '')
@@ -42,7 +42,7 @@ const speak = text => new Promise(resolve =>
   window.responsiveVoice.speak(sanitizeSpeech(text), 'US English Male', { rate: 0.75, pitch: 0.8, onend: resolve })
 )
 
-const filterTweets = tweets => tweets.filter(tweet => blackList.every(filter =>
+const filterTweets = tweets => tweets.filter(tweet => TWEET_BLACK_LIST.every(filter =>
   ('retweeted_status' in tweet) && !tweet.full_text.toLowerCase().includes(filter)
 ))
 
