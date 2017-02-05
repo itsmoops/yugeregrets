@@ -72,7 +72,7 @@ class Tweet extends Component {
   state = { videoID: Math.floor(Math.random() * 18) + 1 }
 
   render () {
-    const { text, author } = this.props
+    const { id_str: id, full_text: text, user } = this.props.tweet.retweeted_status
     const { videoID } = this.state
 
     return (
@@ -80,7 +80,9 @@ class Tweet extends Component {
         <div className="tweet__container">
           <div className="tweet__body">
             <p className="tweet__text">{ text }</p>
-            <p className="tweet__author">{ author }</p>
+            <a className="tweet__author" target="_blank" href={ `https://twitter.com/statuses/${id}` }>
+              ~ { user.screen_name }
+            </a>
           </div>
         </div>
 
@@ -202,7 +204,7 @@ class Main extends Component {
           { tweet ? (
             <TweetContainer showACLUMessage={ index > 2 } key="tweets">
               <CSSTransitionGroup transitionName="fade">
-                <Tweet text={ tweet.full_text } author={ tweet.retweeted_status.user } key={ index } />
+                <Tweet tweet={tweet} key={ index } />
               </CSSTransitionGroup>
             </TweetContainer>
           ) : (
