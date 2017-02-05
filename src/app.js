@@ -81,9 +81,14 @@ class TweetContainer extends Component {
         { children }
 
         { showACLUMessage && (
-          <p className="donate fade-appear">
-            Make you feel bad{'?'} You{"'"}re probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
-          </p>
+          <div className="bottom__banner fade-appear">
+            <span className="donate">
+              Make you feel bad{'?'} You{"'"}re probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
+            </span>
+            <span className="tr__credit">
+                Tweets pulled from <a href="https://twitter.com/Trump_Regrets" target="_blank">@Trump_Regrets</a>
+            </span>
+          </div>
         ) }
       </div>
     )
@@ -159,7 +164,7 @@ class Main extends Component {
       <div>
         <CSSTransitionGroup transitionName="fade">
           { tweet ? (
-            <TweetContainer showACLUMessage={ index > 2 } key="tweets">
+            <TweetContainer showACLUMessage={ index > 0 } key="tweets">
               <CSSTransitionGroup transitionName="fade">
                 <Tweet text={ tweet.full_text } author={ tweet.retweeted_status.user } key={ index } />
               </CSSTransitionGroup>
@@ -172,7 +177,13 @@ class Main extends Component {
         <Controls onMuteSpeech={ this.onMuteSpeech } onMuteMusic={ this.onMuteMusic } music={ music } speech={ speech } />
 
         <audio className="audio" controls autoPlay ref={ audio => { this.audio = audio } }>
-          <source src="./audio/yugeregrets.mp3" type="audio/mpeg" />
+          <source src="./audio/yugeregrets-intro.mp3" type="audio/mpeg" />
+        </audio>
+        <audio className="audio" controls ref={ audio => { this.audio = audio } }>
+          <source src="./audio/yugeregrets-loop.mp3" type="audio/mpeg" />
+        </audio>
+        <audio className="audio" controls ref={ audio => { this.audio = audio } }>
+          <source src="./audio/yugeregrets-end.mp3" type="audio/mpeg" />
         </audio>
       </div>
     )

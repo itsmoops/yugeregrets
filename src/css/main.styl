@@ -157,18 +157,19 @@ a:focus
   @media (max-width: 767px)
     font-size 30px
 
-.donate
-  font-size 25px
-  position fixed
-  width 100%
-  top 100%
-  left 0
-  z-index 100
+.bottom__banner
+  text-align: center;
   padding 20px 0 10px
-  text-align center
   transform translateY(-100%)
   background linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%)
   animation scrollup 300ms ease-out
+  position fixed
+  width 100%
+  top 100%
+  z-index 100
+
+.donate
+  font-size 25px
 
   @media (max-width: 767px)
     font-size 16px
@@ -178,7 +179,9 @@ a:focus
 .tr__credit
     padding-right: 5px
     font-size: 1em
-    text-align: right
+    position: absolute
+    right: 0
+    bottom: 10px
 
     @media (max-width: 767px)
       top 0
