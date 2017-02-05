@@ -19,6 +19,9 @@ scroll-time = 15s
   to
     transform translateY(-100%)
 
+@font-face
+  font-family 'icons'
+
 html, body
   height 100%
   width 100%
@@ -189,15 +192,19 @@ a:focus
 
 .controls
   position fixed
-  bottom 13px
+  top 13px
   left 13px
-  border 1px solid white
+  border 0px none transparent
   border-radius 3px
   z-index 10
+  opacity 0.75
+  transition opacity 300ms ease-out
+
+  &:hover
+    opacity 1
 
 .controls__button
   border 0px none transparent
-  border-left 1px solid white
   margin-left -1px
   background-color transparent
   font-family sans-serif
@@ -205,6 +212,29 @@ a:focus
   display block
   float left
   padding 3px 10px
+  position relative
+
+  &:before
+    content ''
+    background-color #C00
+    display block
+    position: absolute;
+    left 9px
+    top 2px
+    width ((16px**2 * 2)**0.5)
+    height 3px
+    border-radius 25%
+    transform rotate(45deg) scaleX(0)
+    transition transform 300ms ease-out
+    transform-origin left
+
+.controls__button--disabled:before
+  transform rotate(45deg) scaleX(1)
+
+.controls__icon
+  fill white
+  width 16px
+  height 16px
 
 .audio
   display none
