@@ -83,8 +83,8 @@ class Tweet extends Component {
         <div className="tweet__container">
           <div className="tweet__body">
             <p className="tweet__text">{ sanitizeText(text) }</p>
-            <a className="tweet__author" target="_blank" href={ `https://twitter.com/statuses/${id}` }>
-              ~ { user.screen_name }
+            <a className="tweet__author" target="_blank" href={ `http://twitter.com/${user.screen_name}/status/${id}` }>
+              @{ user.screen_name }
             </a>
           </div>
         </div>
