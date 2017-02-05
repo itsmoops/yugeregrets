@@ -122,8 +122,8 @@ class Intro extends Component {
       <div className="container title-container fade-appear">
         <div className="content">
           <h1 className="title">
-            Yuge <br/>
-            Regrets
+            Testing <br/>
+          Continuous integration
           </h1>
           <h2 className="title-author">
             by <br/>
