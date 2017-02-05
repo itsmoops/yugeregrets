@@ -2,7 +2,7 @@ import './css/main.styl'
 import preact, { render, Component } from 'preact' // eslint-disable-line
 import shuffle from 'array-shuffle'
 import CSSTransitionGroup from 'preact-css-transition-group'
-import 'howler'
+import { Howl } from 'howler'
 
 const intro = new Howl({
   src: ['./audio/yugeregrets-intro.mp3'],
