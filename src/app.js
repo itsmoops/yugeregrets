@@ -22,9 +22,13 @@ const howls = [intro, loop, end]
 
 const blackList = ['great', 'proud', ' happy', 'thanks', 'thank you', 'courage', 'courageous', '…', '...', 'http', 'https', 'www', 'appreciate', 'god']
 
-const sanitizeSpeech = text => text
+const sanitizeSpeech = text => sanitizeText(text)
   .replace(/^[^0-9a-z]/gi, '')
   .replace('@realDonaldTrump', 'At Real Donald Trump')
+
+const sanitizeText = text => text
+  .replace(/RT @.+?:/g, '')
+  .replace('&amp;', '&')
 
 const startMusic = () => intro.play()
 
@@ -63,8 +67,7 @@ const fetchTweets = () => new Promise((resolve, reject) => {
 const getTweets = () => fetchTweets()
   .then(msg =>
     shuffle(filterTweets(msg)).map(tweet => ({
-      ...tweet,
-      full_text: tweet.full_text.replace(/RT @.+?:/g, '').replace('&amp;', '&')
+      ...tweet
     }))
   )
 
@@ -79,7 +82,7 @@ class Tweet extends Component {
       <div className="tweet">
         <div className="tweet__container">
           <div className="tweet__body">
-            <p className="tweet__text">{ text }</p>
+            <p className="tweet__text">{ sanitizeText(text) }</p>
             <a className="tweet__author" target="_blank" href={ `https://twitter.com/statuses/${id}` }>
               ~ { user.screen_name }
             </a>
