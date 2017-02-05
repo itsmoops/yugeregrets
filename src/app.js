@@ -106,13 +106,14 @@ class TweetContainer extends Component {
       <div className="fullscreen fade-appear ragrats">
         { children }
 
+        <span className="tr-credit fade-appear">
+          Tweets pulled from <a href="https://twitter.com/Trump_Regrets" target="_blank">@Trump_Regrets</a>
+        </span>
+
         { showACLUMessage && (
           <div className="bottom__banner fade-appear">
             <span className="donate">
               Make you feel bad{'?'} You{"'"}re probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank">Donate to the ACLU here.</a>
-            </span>
-            <span className="tr__credit">
-                Tweets pulled from <a href="https://twitter.com/Trump_Regrets" target="_blank">@Trump_Regrets</a>
             </span>
           </div>
         ) }
