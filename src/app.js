@@ -1,4 +1,5 @@
 import './css/main.styl'
+import 'core-js/shim'
 import preact, { render, Component } from 'preact' // eslint-disable-line
 import shuffle from 'array-shuffle'
 import CSSTransitionGroup from 'preact-css-transition-group'
