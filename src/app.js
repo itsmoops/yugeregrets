@@ -211,9 +211,6 @@ class Main extends Component {
     startMusic()
     speakIntro()
 
-    alert('is iOS: ' + isiOS)
-    alert('is Android: ' + isAndroid)
-
     Promise.all([
       getTweets(),
       delay(10000)
