@@ -33,9 +33,9 @@ const end = new Howl({
 const howls = [intro, loop, end]
 
 const sanitizeSpeech = text => sanitizeText(text)
+  .replace('@realDonaldTrump', 'At Real Donald Trump!')
   .toLowerCase()
   .replace(/^[^0-9a-z]/gi, '')
-  .replace('@realDonaldTrump', 'At Real Donald Trump')
   .replace('#', 'hashtag')
 
 const sanitizeText = text => text
