@@ -1,21 +1,20 @@
-var express = require('express')
-var app = express()
-var config = require('./data/twitter_config')
-var Twitter = require('twitter-node-client').Twitter
-var twitter = new Twitter(config)
-var moment = require('moment')
-var jsonfile = require('jsonfile')
-var fs = require('fs')
+const express = require('express')
+const config = require('./data/twitter_config')
+const Twitter = require('twitter-node-client').Twitter
+const moment = require('moment')
+const jsonfile = require('jsonfile')
+const fs = require('fs')
+const path = require('path')
 
-var error = (err, response, body) => {
-    console.log('ERROR [%s]', err);
-};
+const twitter = new Twitter(config)
+const app = express()
 
+const error = (err, response, body) => console.log('ERROR [%s]', err) // eslint-disable-line
 
-app.set('port', (process.env.PORT || 8080))
+app.set('port', process.env.PORT || 8080)
 app.set('json spaces', 2)
 
-app.use(express.static(__dirname + '/src'))
+app.use(express.static(path.join(__dirname, '/src')))
 
 app.get('/', (request, response) => {
   response.render('pages/index')
@@ -26,66 +25,63 @@ app.listen(app.get('port'), () => {
 })
 
 /**
-	* checks to see if a tweets.json file already exists
+* checks to see if a tweets.json file already exists
 */
-_fileExists = (filePath) => {
-    return new Promise((resolve, reject) => {
-        fs.stat(filePath, (err, stat) => {
-            if (err == null) {
-                 resolve(true)
-            } else if (err && err.code == 'ENOENT') {
-                 resolve(false)
-            }
-        });
-    })
-}
-
-_getTweets = (filePath) => {
-  return new Promise((resolve, reject) => {
-    var searchParams = {
-      screen_name: 'Trump_Regrets',
-      count: '50',
-      tweet_mode: 'extended'
+const fileExists = filePath => new Promise((resolve, reject) => {
+  fs.stat(filePath, (err, stat) => {
+    if (!err) {
+      resolve(true)
+    } else if (err && err.code === 'ENOENT') {
+      resolve(false)
+    } else {
+      reject(err)
     }
-    twitter.getUserTimeline(searchParams, error, (data) => {
-      data = JSON.parse(data)
-      data.DATE_GENERATED = moment()
-      var spaces = {spaces: 2};
-      jsonfile.writeFile(filePath, data, spaces, (err) => {
-          if (err) {
-              console.log(err)
-          }
-      })
-      resolve(data)
-    })
   })
-}
+})
+
+const getTweets = filePath => new Promise((resolve, reject) => {
+  const searchParams = {
+    screen_name: 'Trump_Regrets',
+    count: '50',
+    tweet_mode: 'extended'
+  }
+  twitter.getUserTimeline(searchParams, error, data => {
+    data = JSON.parse(data)
+    data.DATE_GENERATED = moment()
+    jsonfile.writeFile(filePath, data, { spaces: 2 }, err => {
+      if (err) console.error(err)
+    })
+    resolve(data)
+  })
+})
 
 app.get('/tweets', (request, response) => {
-  var filePath = './data/tweets.json'
-  var tweets = {}
-  _fileExists(filePath).then((exists) => {
-      if (exists) {
-        var today = moment()
-        tweets = require(filePath)
-        /* we only want to generate new tweets once per day
-        * so we check against the "DATE_GENERATED" property */
-        if (today.isAfter(tweets.DATE_GENERATED, 'day')) {
-            // if it's been more than a day, regenerate tweets
-            _getTweets(filePath).then((data) => {
-              tweets = data
-              response.json(tweets)
-            })
-        } else {
-          // if it hasn't been a day, don't regenerate
-          response.json(tweets)
-        }
-      } else {
-        // generate tweets for the first time if file doesn't exist
-        _getTweets(filePath).then((data) => {
+  const filePath = './data/tweets.json'
+
+  let tweets = {}
+
+  fileExists(filePath).then((exists) => {
+    if (exists) {
+      const today = moment()
+      tweets = require(filePath)
+      /* we only want to generate new tweets once per day
+      * so we check against the "DATE_GENERATED" property */
+      if (today.isAfter(tweets.DATE_GENERATED, 'day')) {
+        // if it's been more than a day, regenerate tweets
+        getTweets(filePath).then(data => {
           tweets = data
           response.json(tweets)
         })
+      } else {
+        // if it hasn't been a day, don't regenerate
+        response.json(tweets)
       }
+    } else {
+      // generate tweets for the first time if file doesn't exist
+      getTweets(filePath).then((data) => {
+        tweets = data
+        response.json(tweets)
+      })
+    }
   })
 })
