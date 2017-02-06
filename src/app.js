@@ -12,10 +12,6 @@ const NUMBER_OF_VIDEOS = 18
 const VIDEO_IDS = shuffle([...Array(NUMBER_OF_VIDEOS).keys()])
 
 const WEBM_SUPPORT = (() => {
-  // if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)){
-  //   console.log('true')
-  //   return false
-  // }
   const testEl = document.createElement('video')
   return !!(testEl.canPlayType && testEl.canPlayType('video/webm; codecs="vp8, vorbis"'))
 })()
@@ -184,6 +180,16 @@ class Controls extends Component {
   }
 }
 
+class SocialShare extends Component {
+  render() {
+    return (
+      <div className="social__share">
+        <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.yugeregrets.com%2F&layout=button_count&size=small&mobile_iframe=true&appId=389919178033644&width=69&height=20" width="69" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+      </div>
+    )
+  }
+}
+
 class Main extends Component {
   state = {
     tweet: null,
@@ -232,6 +238,8 @@ class Main extends Component {
         </CSSTransitionGroup>
 
         <Controls onMuteSpeech={ this.onMuteSpeech } onMuteMusic={ this.onMuteMusic } music={ music } speech={ speech } />
+
+        <SocialShare />
 
       </div>
     )

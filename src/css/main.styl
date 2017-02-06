@@ -246,15 +246,27 @@ a:focus
 .audio
   display none
 
+.social__share
+  position fixed
+  bottom 0
+  padding-bottom 10px
+  padding-left 10px
+  z-index 100
+
+  @media (max-width: 767px)
+    top 15px
+    padding-left 65px
+
+  @media (max-width: 413px)
+    display none
+
 *::-webkit-media-controls-panel
   display: none!important;
   -webkit-appearance: none;
 
-
 *::--webkit-media-controls-play-button
   display: none!important;
   -webkit-appearance: none;
-
 
 *::-webkit-media-controls-start-playback-button
   display: none!important;
