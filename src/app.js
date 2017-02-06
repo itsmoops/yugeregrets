@@ -5,7 +5,7 @@ import shuffle from 'array-shuffle'
 import CSSTransitionGroup from 'preact-css-transition-group'
 import { Howl } from 'howler'
 
-const TWEET_BLACK_LIST = [ '…', '...', 'http', 'https', 'www' ]
+const TWEET_BLACK_LIST = [ /^…/, /…$/, /^\.\.\./, /\.\.\.$/, /https?:/, /www/ ]
 
 const NUMBER_OF_VIDEOS = 18
 
@@ -55,7 +55,7 @@ const speak = text => new Promise(resolve =>
 )
 
 const filterTweets = tweets => tweets.filter(tweet => TWEET_BLACK_LIST.every(filter =>
-  ('retweeted_status' in tweet) && !tweet.full_text.toLowerCase().includes(filter)
+  ('retweeted_status' in tweet) && !filter.test(tweet.full_text.toLowerCase())
 ))
 
 const fetchTweets = () => new Promise((resolve, reject) => {
