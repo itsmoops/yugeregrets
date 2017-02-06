@@ -34,6 +34,8 @@ const howls = [intro, loop, end]
 
 const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
 
+const isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1
+
 const sanitizeSpeech = text => sanitizeText(text)
   .replace('@realDonaldTrump', 'At Real Donald Trump!')
   .toLowerCase()
@@ -169,7 +171,7 @@ class Controls extends Component {
             <path d="M30 0h2v23c0 2.761-3.134 5-7 5s-7-2.239-7-5c0-2.761 3.134-5 7-5 1.959 0 3.729 0.575 5 1.501v-11.501l-16 3.556v15.444c0 2.761-3.134 5-7 5s-7-2.239-7-5c0-2.761 3.134-5 7-5 1.959 0 3.729 0.575 5 1.501v-19.501l18-4z"></path>
           </svg>
         </MuteButton>
-        { (isVoiceSupported && !isiOS) && (
+        { (isVoiceSupported && !isiOS && !isAndroid) && (
           <MuteButton enabled={ speech } onClick={ onMuteSpeech }>
             <svg version="1.1" width="32" height="32" viewBox="0 0 32 32" className="controls__icon">
               <path d="M22.485 25.985c-0.384 0-0.768-0.146-1.061-0.439-0.586-0.586-0.586-1.535 0-2.121 4.094-4.094 4.094-10.755 0-14.849-0.586-0.586-0.586-1.536 0-2.121s1.536-0.586 2.121 0c2.55 2.55 3.954 5.94 3.954 9.546s-1.404 6.996-3.954 9.546c-0.293 0.293-0.677 0.439-1.061 0.439v0zM17.157 23.157c-0.384 0-0.768-0.146-1.061-0.439-0.586-0.586-0.586-1.535 0-2.121 2.534-2.534 2.534-6.658 0-9.192-0.586-0.586-0.586-1.536 0-2.121s1.535-0.586 2.121 0c3.704 3.704 3.704 9.731 0 13.435-0.293 0.293-0.677 0.439-1.061 0.439z"></path>
@@ -208,6 +210,9 @@ class Main extends Component {
   componentDidMount () {
     startMusic()
     speakIntro()
+
+    alert('is iOS: ' + isiOS)
+    alert('is Android: ' + isAndroid)
 
     Promise.all([
       getTweets(),
