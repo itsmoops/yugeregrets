@@ -31,7 +31,7 @@ const sanitizeSpeech = text => sanitizeText(text)
   .replace('@realDonaldTrump', 'At Real Donald Trump')
   .toLowerCase()
   .replace(/^[^0-9a-z]/gi, '')
-  .replace('#', "hashtag") && console.log(text)
+  .replace('#', "hashtag")
 
 const sanitizeText = text => text
   .replace(/RT @.+?:/g, '')
