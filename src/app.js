@@ -184,7 +184,12 @@ class SocialShare extends Component {
   render() {
     return (
       <div className="social__share">
-        <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.yugeregrets.com%2F&layout=button_count&size=small&mobile_iframe=true&appId=389919178033644&width=69&height=20" width="69" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        <div class="fb-share-button"
+             data-href="http://www.yugeregrets.com/"
+             data-layout="button_count"
+             data-size="small"
+             data-mobile-iframe="true">
+        </div>
       </div>
     )
   }
