@@ -12,6 +12,10 @@ const NUMBER_OF_VIDEOS = 18
 const VIDEO_IDS = shuffle([...Array(NUMBER_OF_VIDEOS).keys()])
 
 const WEBM_SUPPORT = (() => {
+  // if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)){
+  //   console.log('true')
+  //   return false
+  // }
   const testEl = document.createElement('video')
   return !!(testEl.canPlayType && testEl.canPlayType('video/webm; codecs="vp8, vorbis"'))
 })()
@@ -46,7 +50,7 @@ const startMusic = () => intro.play()
 
 const loopAudio = () => loop.play()
 
-const speakIntro = () => speak("And now, 'yuuj' regrets. By remorseful Trump voters.")
+const speakIntro = () => speak("And now, yuuj regrets. By remorseful Trump voters.")
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
