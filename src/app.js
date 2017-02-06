@@ -11,6 +11,11 @@ const NUMBER_OF_VIDEOS = 18
 
 const VIDEO_IDS = shuffle([...Array(NUMBER_OF_VIDEOS).keys()])
 
+const WEBM_SUPPORT = (() => {
+  const testEl = document.createElement('video')
+  return !!(testEl.canPlayType && testEl.canPlayType('video/webm; codecs="vp8, vorbis"'))
+})()
+
 const intro = new Howl({
   src: ['./audio/yugeregrets-intro.mp3'],
   onend: () => loopAudio()
@@ -28,10 +33,10 @@ const end = new Howl({
 const howls = [intro, loop, end]
 
 const sanitizeSpeech = text => sanitizeText(text)
-  .replace('@realDonaldTrump', 'At Real Donald Trump')
   .toLowerCase()
   .replace(/^[^0-9a-z]/gi, '')
-  .replace('#', "hashtag") && console.log(text)
+  .replace('@realDonaldTrump', 'At Real Donald Trump')
+  .replace('#', 'hashtag')
 
 const sanitizeText = text => text
   .replace(/RT @.+?:/g, '')
@@ -41,7 +46,7 @@ const startMusic = () => intro.play()
 
 const loopAudio = () => loop.play()
 
-const speakIntro = () => speak("And now, yuuj regrets. By remorseful Trump voters.")
+const speakIntro = () => speak("And now, 'yuuj' regrets. By remorseful Trump voters.")
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -95,7 +100,7 @@ class Tweet extends Component {
           </div>
         </div>
 
-        <video key={ id } src={ `/video/${videoID}.mp4` } className="fullscreen-video" autoPlay loop muted />
+        <video key={ videoID } src={`/video/${videoID}.${WEBM_SUPPORT ? 'webm' : 'mp4'}`} className="fullscreen-video" autoPlay loop muted="true" />
       </div>
     )
   }
@@ -128,7 +133,7 @@ class TweetContainer extends Component {
 class Intro extends Component {
   render () {
     return (
-      <div className="container fade-appear">
+      <div className="container title-container fade-appear">
         <div className="content">
           <h1 className="title">
             Yuge <br/>
