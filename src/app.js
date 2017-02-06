@@ -188,13 +188,13 @@ class SocialShare extends Component {
   render() {
     return (
       <div className="social__share">
-        <div className="fb-share-button share"
+        <div className="fb-share-button fb__share"
              data-href="http://www.yugeregrets.com/"
              data-layout="button_count"
              data-size="small"
              data-mobile-iframe="true">
         </div>
-        <div className="share">
+        <div>
           <a href="https://twitter.com/share" class="twitter-share-button" data-text="Yuge Regrets" data-hashtags="trumpregrets" data-related="Trump_Regrets" data-show-count="false">Tweet</a>
           <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
