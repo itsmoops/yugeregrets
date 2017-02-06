@@ -195,8 +195,8 @@ class SocialShare extends Component {
              data-mobile-iframe="true">
         </div>
         <div>
-          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Yuge Regrets" data-hashtags="trumpregrets" data-related="Trump_Regrets" data-show-count="false">Tweet</a>
           <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Yuge Regrets by Remorseful Trump Voters" data-hashtags="trumpregrets" data-related="Trump_Regrets" data-show-count="true"></a>
         </div>
       </div>
     )
