@@ -32,6 +32,8 @@ const end = new Howl({
 
 const howls = [intro, loop, end]
 
+const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+
 const sanitizeSpeech = text => sanitizeText(text)
   .replace('@realDonaldTrump', 'At Real Donald Trump!')
   .toLowerCase()
@@ -159,11 +161,10 @@ class Controls extends Component {
   render () {
     const { music, speech, onMuteSpeech, onMuteMusic } = this.props
     const isVoiceSupported = window.responsiveVoice.voiceSupport()
-    const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
 
     return (
       <div className="controls fade-appear">
-        <MuteButton enabled={ isiOS ? !music : music } onClick={ onMuteMusic }>
+        <MuteButton enabled={ music } onClick={ onMuteMusic }>
           <svg version="1.1" width="32" height="32" viewBox="0 0 32 32" className="controls__icon">
             <path d="M30 0h2v23c0 2.761-3.134 5-7 5s-7-2.239-7-5c0-2.761 3.134-5 7-5 1.959 0 3.729 0.575 5 1.501v-11.501l-16 3.556v15.444c0 2.761-3.134 5-7 5s-7-2.239-7-5c0-2.761 3.134-5 7-5 1.959 0 3.729 0.575 5 1.501v-19.501l18-4z"></path>
           </svg>
@@ -200,7 +201,7 @@ class Main extends Component {
   state = {
     tweet: null,
     index: null,
-    music: true,
+    music: isiOS ? false : true,
     speech: true
   }
 
