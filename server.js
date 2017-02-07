@@ -47,8 +47,11 @@ const getTweets = filePath => new Promise((resolve, reject) => {
   }
   twitter.getUserTimeline(searchParams, error, data => {
     data = JSON.parse(data)
-    data.DATE_GENERATED = moment()
-    jsonfile.writeFile(filePath, data, { spaces: 2 }, err => {
+    data.unshift({
+      DATE_GENERATED: moment()
+    })
+
+    jsonfile.writeFile(filePath, data, { spaces: 2 }, function(err) {
       if (err) console.error(err)
     })
     resolve(data)
@@ -66,7 +69,7 @@ app.get('/tweets', (request, response) => {
       tweets = require(filePath)
       /* we only want to generate new tweets once per day
       * so we check against the "DATE_GENERATED" property */
-      if (today.isAfter(tweets.DATE_GENERATED, 'day')) {
+      if (today.isAfter(tweets[0].DATE_GENERATED, 'hour')) {
         // if it's been more than a day, regenerate tweets
         getTweets(filePath).then(data => {
           tweets = data
