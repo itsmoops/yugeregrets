@@ -41,6 +41,7 @@ const sanitizeSpeech = text => sanitizeText(text)
   .toLowerCase()
   .replace(/^[^0-9a-z]/gi, '')
   .replace('#', 'hashtag')
+  .replace('stfu', 'shut the fuck up')
 
 const sanitizeText = text => text
   .replace(/RT @.+?:/g, '')
