@@ -105,7 +105,7 @@ class Tweet extends Component {
           </div>
         </div>
 
-        <video key={ videoID } src={`/video/${videoID}.${WEBM_SUPPORT ? 'webm' : 'mp4'}`} className="fullscreen-video" autoPlay loop muted="true" />
+        <video key={ videoID } src={`/video/${videoID}.${WEBM_SUPPORT ? 'webm' : 'mp4'}`} className="fullscreen-video" autoPlay loop muted playsinline />
       </div>
     )
   }
