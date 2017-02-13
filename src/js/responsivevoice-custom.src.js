@@ -88,7 +88,6 @@ if (typeof responsiveVoice != 'undefined') {
 
         ];
         if (window.navigator) {
-            debugger
             if (window.navigator.platform === "MacIntel") {
                 // gives us the US english male voice for macs at least
                 self.responsivevoices[63].voiceIDs.unshift(195)
