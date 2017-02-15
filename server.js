@@ -58,6 +58,31 @@ const getTweets = filePath => new Promise((resolve, reject) => {
   })
 })
 
+twitter.getFollowersList({cursor: -1, screen_name: "Trump_Regrets", count: 200,}, error, function(data) {
+  const filePath = './data/followers.json'
+  data = JSON.parse(data)
+  var formattedData = []
+  console.log("users", data.users.length)
+  data.users.forEach(function(user) {
+    var info = {
+      screen_name: user.screen_name,
+      followers_count: user.followers_count
+    }
+    formattedData.push(info)
+  })
+  function compare(a,b) {
+    if (a.followers_count < b.followers_count)
+      return -1;
+    if (a.followers_count > b.followers_count)
+      return 1;
+    return 0;
+  }
+  formattedData.sort(compare)
+  jsonfile.writeFile(filePath, formattedData, { spaces: 2 }, function(err) {
+    if (err) console.error(err)
+  })
+})
+
 app.get('/tweets', (request, response) => {
   const filePath = './data/tweets.json'
 

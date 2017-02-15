@@ -4,3 +4,4 @@ npm-debug.log
 bundle.js
 src/dist
 data/tweets.json
+data/followers.json
