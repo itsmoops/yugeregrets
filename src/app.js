@@ -126,7 +126,7 @@ class TweetContainer extends Component {
         { showACLUMessage && (
           <div className="bottom__banner fade-appear">
             <span className="donate">
-              Make you feel bad{'?'} You{"'"}re probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank" onClick={() => trackOutboundLink("https://action.aclu.org/secure/donate-to-aclu")}>Donate to the ACLU here.</a>
+              Make you feel bad{'?'} You{"'"}re probably a good person. <a href="https://action.aclu.org/secure/donate-to-aclu" target="_blank" onClick={() => {trackOutboundLink("https://action.aclu.org/secure/donate-to-aclu"); return false;}}>Donate to the ACLU here.</a>
             </span>
           </div>
         ) }
