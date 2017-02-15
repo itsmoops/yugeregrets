@@ -104,12 +104,8 @@ class Tweet extends Component {
             </a>
           </div>
         </div>
-        { isiOS && (
-          <img className="fullscreen-video" src={`/video/${videoID}.gif`}/>
-        ) }
-        { !isiOS && (
-          <video key={ videoID } src={`/video/${videoID}.${WEBM_SUPPORT ? 'webm' : 'mp4'}`} className="fullscreen-video" autoPlay loop muted="true" />
-        ) }
+
+        <video key={ videoID } src={`/video/${videoID}.${WEBM_SUPPORT ? 'webm' : 'mp4'}`} className="fullscreen-video" autoPlay loop muted="true" />
       </div>
     )
   }
