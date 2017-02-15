@@ -19,6 +19,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Alice" rel="stylesheet">
+    <script>
+      var trackOutboundLink = function(url) {
+         ga('send', 'event', 'outbound', 'click', url, {
+           'transport': 'beacon',
+           'hitCallback': function(){}
+         });
+      }
+    </script>
 </head>
 <body>
     <div id="fb-root"></div>
